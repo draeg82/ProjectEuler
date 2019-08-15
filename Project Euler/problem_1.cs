@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Project_Euler
 {
-    class Problem_1
+    static class Problem_1
     {
         static void Main(string[] args)
         {
@@ -22,8 +22,10 @@ namespace Project_Euler
                 }
             }
             watch.Stop();
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("The solution is " + answer.ToString());
             Console.WriteLine("The solution was found in " + watch.ElapsedMilliseconds.ToString() + "ms");
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }

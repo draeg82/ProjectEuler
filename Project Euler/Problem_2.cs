@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Project_Euler
@@ -12,15 +12,33 @@ namespace Project_Euler
             // 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
             // By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-            var watch = Stopwatch.StartNew();
+            var timeIt = Stopwatch.StartNew();
+            List<int> fnumberTerms = new List<int>();
+            fnumberTerms.Add(1);
+            fnumberTerms.Add(2);
             int answer = 0;
-            int fnumber = 0;
-            ArrayList fnumberTerms = new ArrayList();
 
-            while (fnumber <= 4000000)
+            while (fnumberTerms[fnumberTerms.Count - 1] <= 4000000)
             {
+                fnumberTerms.Add(fnumberTerms[fnumberTerms.Count - 1] + fnumberTerms[fnumberTerms.Count - 2]);
+            }
+
+            fnumberTerms.RemoveAt(fnumberTerms.Count - 1);
+
+            for (int i = 0; i < fnumberTerms.Count; i++)
+            {
+                if (fnumberTerms[i] % 2 == 0)
+                {
+                    answer += fnumberTerms[i];
+                }
 
             }
+
+            timeIt.Stop();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("The answer is " + answer.ToString());
+            Console.WriteLine("Time taken was " + timeIt.ElapsedMilliseconds.ToString() + "ms");
+            Console.ForegroundColor = ConsoleColor.White;
 
         }
     }
